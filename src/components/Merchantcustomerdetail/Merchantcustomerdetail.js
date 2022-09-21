@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import { BrowserRouter as BrowserRouter, Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 import './Merchantcustomerdetail.css';
 
  
-import searchicon from './images/searchicon.png';
+// import searchicon from './images/searchicon.png';
 import calendarsample from './images/calendarsample.png';
  
 

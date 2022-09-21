@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { BrowserRouter as BrowserRouter, Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 import './Merchantconfirmation.css';

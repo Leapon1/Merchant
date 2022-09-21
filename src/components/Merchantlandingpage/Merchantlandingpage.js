@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Merchantlandingpage.css";
-import calendarsamplemrchant from "./images/calendarsamplemrchant.png";
+// import calendarsamplemrchant from "./images/calendarsamplemrchant.png";
 import addusericon from "./images/addusericon.png";
 import CustomerInfoCard from "../CustomerInfoCard/CustomerInfoCard";
 import * as moment from "moment";
 
-var customersData = [];
 // MONTH
 var currentMonth = moment().format('MMMM');
 var currentMonthYear = " "+moment().format('MMM') +" "+ moment().format('YY');
@@ -36,7 +35,6 @@ var dayName3 = moment().add(3, 'd').format('ddd');
 class Merchantlandingpage extends Component {
   constructor(props) {
     super(props)
-    let currentDate = new Date();
     this.state = {
       customerInfo: [],
       appointmentList: [],

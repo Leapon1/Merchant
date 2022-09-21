@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Merchantlogin.css";
-import googlelogoicon from "./images/googlelogoicon.png";
+// import googlelogoicon from "./images/googlelogoicon.png";
 
 class Merchantlogin extends Component {
   render() {

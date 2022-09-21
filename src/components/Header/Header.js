@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import $ from 'jquery'
 
 import './Header.css';
 
 import companylogo from './images/companylogo.png';
-import mobilebar from './images/mobilebar.png';
+// import mobilebar from './images/mobilebar.png';
 import mobilemenu from './images/mobilemenu.png';
 import listarrow from './images/listarrow.png';
 

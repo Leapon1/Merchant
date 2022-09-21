@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import './MerchantEditTime.css'
-import { BrowserRouter as BrowserRouter, Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as moment from "moment";
 import DateTimePicker from "../DayTimePicker/DayTimePicker";
 
