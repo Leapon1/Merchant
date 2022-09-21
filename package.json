@@ -2,7 +2,6 @@
   "name": "merchant",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://leaponapi.herokuapp.com/",
   "dependencies": {
     "@date-io/date-fns": "^2.15.0",
     "@emotion/react": "^11.10.4",
