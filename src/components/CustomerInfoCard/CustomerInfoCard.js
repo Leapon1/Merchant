@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import * as moment from "moment";
-import { Link } from "react-router-dom";
+import { Link, useHistory  } from "react-router-dom";
 
 import './CustomerInfoCard.css'
 
 const CustomerInfoCard = (props) => {
+  const history = useHistory();
  const [isVisible, setIsvisible] = useState(false);
  const [status, setStatus] = useState("");
 
@@ -49,7 +50,14 @@ const CustomerInfoCard = (props) => {
               >Completed |</Link>
               <Link
                 className="hover-link"
-                to={"/Appointment/"+ props.appointment.ApptId}
+                // to={"/Appointment/"+ props.appointment.ApptId}
+                onClick={() => {
+                  history.push("/Appointment/"+ props.appointment.ApptId, {
+                    state: {
+                      item: props.appointment
+                    },
+                  })
+                }}
               >
                 Edit |
               </Link>
