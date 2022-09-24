@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./MerchantEditTime.css";
-import { Link, useHistory } from "react-router-dom";
+import swal from "sweetalert";
+import {  useHistory } from "react-router-dom";
 import * as moment from "moment";
 import DateTimePicker from "../DayTimePicker/DayTimePicker";
 
@@ -30,7 +31,26 @@ function MerchantEditTime(props) {
   }, []);
 
   const handleSubmit = () => {
-    axios.put(`/api${props.location.pathname}/`, formData).then((res) => {});
+    axios.put(`/api${props.location.pathname}`, formData).then((res) => {
+      swal({
+        title : "Success!",
+        text: "Your details have Been submitted",
+        icon: "success",
+        timer: 1500,
+        buttons: false
+      });
+      history.push("/merchantlandingpage")
+      window.location.reload();
+    })
+    .catch((error) => {
+      swal({
+        title : "Warning!",
+        text: error,
+        icon: "warning",
+        timer: 1500,
+        buttons: false
+      });
+    })
   };
 
   const handleServices = () => {
@@ -126,7 +146,6 @@ function MerchantEditTime(props) {
             <a
               onClick={() => {
                 handleSubmit();
-				history.push("/merchantlandingpage")
               }}
               className="bookappointment-btn"
             >

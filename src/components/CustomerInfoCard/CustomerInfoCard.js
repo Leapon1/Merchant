@@ -8,7 +8,6 @@ const CustomerInfoCard = (props) => {
   const history = useHistory();
  const [isVisible, setIsvisible] = useState(false);
  const [status, setStatus] = useState("");
-
   return (
   <div className={"merchantlanding-calender-item "+(status !== "" ? "mb" : "")} key={'app'+props.appointment.ApptId}>
         <div className="merchantlanding-calender-itemleftpart">
@@ -52,7 +51,7 @@ const CustomerInfoCard = (props) => {
                 className="hover-link"
                 // to={"/Appointment/"+ props.appointment.ApptId}
                 onClick={() => {
-                  history.push("/Appointment/"+ props.appointment.ApptId, {
+                  history.push("/Appointment/"+ props.appointment.ApptId+"/", {
                     state: {
                       item: props.appointment
                     },

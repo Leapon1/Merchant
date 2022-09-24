@@ -60,9 +60,7 @@ class Merchantlandingpage extends Component {
           .slice(0, 10);
         const sliceNewDate = this.state.selectedDate+currentMonthYear;
         if (compareDate == sliceNewDate) {
-          const customerInfoURL =
-            "/api/Customer/" +
-            dateCompare.customerId;
+          const customerInfoURL ="/api/Customer/" + dateCompare.customerId +"/";
           axios.get(customerInfoURL).then((custResponse) => {
             dateCompare.customer = custResponse.data;
 
@@ -70,7 +68,7 @@ class Merchantlandingpage extends Component {
             dateCompare.appServices = this.allAppointmentServiceList.filter(info => info.appointmentId == dateCompare.ApptId);
             
             dateCompare.appServices.map(appService => {
-              const serviceApi ='/api/Service/'+ appService.serviceId
+              const serviceApi ='/api/Service/'+ appService.serviceId+"/"
               axios.get(serviceApi)
               .then((res) => {
                 appService.service = res.data;
@@ -89,7 +87,7 @@ class Merchantlandingpage extends Component {
               dateCompare.appServices = this.allAppointmentServiceList.filter(info => info.appointmentId == dateCompare.ApptId);
 
               dateCompare.appServices.map(appService => {
-                const serviceApi ='/api/Service/'+ appService.serviceId
+                const serviceApi ='/api/Service/'+ appService.serviceId+"/"
                 axios.get(serviceApi)
                 .then((res) => {
                   appService.service = res.data;
@@ -130,46 +128,52 @@ class Merchantlandingpage extends Component {
           <div className="datePicker">
             <div className="date_single_item">
               <p className="dayName">{dayName_3}</p>
-              <p className={this.state.selectedDate == datePicker_3 ? "selected_date" : ""} onClick={() => {
+              <div className={this.state.selectedDate == datePicker_3 ? "selected_date" : ""}>
+              <a className={this.state.selectedDate == datePicker_3 ? "selected_date" : ""} onClick={() => {
                 this.setState({
                   selectedDate: datePicker_3, 
                   appointmentList: [],
                 })
                 this.initialCall(datePicker_3);
-              }}>{datePicker_3}</p>
+              }}>{datePicker_3}</a></div>
             </div>
             <div className="date_single_item">
               <p className="dayName">{dayName_2}</p>
-              <a className={this.state.selectedDate == datePicker_2 ? "selected_date" : ""} onClick={() => {
+              <div className={this.state.selectedDate == datePicker_2 ? "selected_date" : ""}>
+              <a  onClick={() => {
                 this.setState({
                   selectedDate: datePicker_2,
                    appointmentList: [],
                    })
                 this.initialCall(datePicker_2);
-              }}>{datePicker_2}</a>
+              }}>{datePicker_2}</a></div>
             </div>
             <div className="date_single_item">
               <p className="dayName">{dayName_1}</p>
-              <a className={this.state.selectedDate == datePicker_1 ? "selected_date" : ""} onClick={() => {
+              <div className={this.state.selectedDate == datePicker_1 ? "selected_date" : ""}>
+              <a  onClick={() => {
                 this.setState({
                   selectedDate: datePicker_1, 
                   appointmentList: [],
                 })
                 this.initialCall(datePicker_1);
-              }}>{datePicker_1}</a>
+              }}>{datePicker_1}</a></div>
             </div>
             <div className="date_single_item">
               <p className="dayName">{dayName}</p>
-              <a className={this.state.selectedDate == datePicker ? "selected_date" : ""} onClick={() => {
-                this.setState({
-                  selectedDate: datePicker,
-                   appointmentList: [],
-                  })
-                this.initialCall(datePicker);
-              }}>{datePicker}</a>
+              <div className={this.state.selectedDate == datePicker ? "selected_date" : ""}>
+                <a onClick={() => {
+                  this.setState({
+                    selectedDate: datePicker,
+                    appointmentList: [],
+                    })
+                  this.initialCall(datePicker);
+                }}>{datePicker}</a>
+              </div>
             </div>
             <div className={"date_single_item "}>
               <p className="dayName">{dayName1}</p>
+              <div className={this.state.selectedDate == datePicker1 ? "selected_date" : ""} >
               <a className={this.state.selectedDate == datePicker1 ? "selected_date" : ""} 
               onClick={() => {
                 this.setState({
@@ -179,27 +183,29 @@ class Merchantlandingpage extends Component {
                 this.initialCall(datePicker1);
               }}>
                 {datePicker1}
-              </a>
+              </a></div>
             </div>
             <div className="date_single_item">
               <p className="dayName">{dayName2}</p>
-              <a className={this.state.selectedDate == datePicker2 ? "selected_date" : ""} onClick={() => {
+              <div className={this.state.selectedDate == datePicker2 ? "selected_date" : ""}>
+              <a onClick={() => {
                 this.setState({
                   selectedDate: datePicker2, 
                   appointmentList: [],
                 })
                 this.initialCall();
-              }}>{datePicker2}</a>
+              }}>{datePicker2}</a></div>
             </div>
             <div className="date_single_item">
               <p className="dayName">{dayName3}</p>
-              <a className={this.state.selectedDate == datePicker3 ? "selected_date" : ""} onClick={() => {
+              <div className={this.state.selectedDate == datePicker3 ? "selected_date" : ""}>
+              <a onClick={() => {
                 this.setState({
                   selectedDate: datePicker3, 
                   appointmentList: [],
                 })
                 this.initialCall();
-              }}>{datePicker3}</a>
+              }}>{datePicker3}</a></div>
             </div>
           </div>
         </div>

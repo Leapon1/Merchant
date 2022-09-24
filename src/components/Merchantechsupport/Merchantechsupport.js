@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 import "./Merchantechsupport.css";
 
 function Merchantechsupport() {
@@ -11,6 +12,13 @@ function Merchantechsupport() {
   const handleSubmit = () => {
     axios.post("https://sheet.best/api/sheets/b48b630e-8ea9-4706-85e5-f69eba744412",formData)
       .then((res) => {
+        swal({
+          title : "Success!",
+          text: "Your query have Been submitted",
+          icon: "success",
+          timer: 1500,
+          buttons: false
+        });
       });
   };
   return (

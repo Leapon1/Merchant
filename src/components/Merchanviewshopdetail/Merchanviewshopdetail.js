@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 import "./Merchanviewshopdetail.css";
 
 function Merchanviewshopdetail() {
@@ -23,6 +24,13 @@ function Merchanviewshopdetail() {
           address: res.data.address,
           email: res.data.email,
           password: res.data.password,
+        });
+        swal({
+          title : "Success!",
+          text: "Your details have Been submitted",
+          icon: "success",
+          timer: 1500,
+          buttons: false
         });
       });
   };
