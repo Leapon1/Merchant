@@ -39,8 +39,7 @@ function MerchantEditTime(props) {
         timer: 1500,
         buttons: false
       });
-      history.push("/merchantlandingpage")
-      window.location.reload();
+      history.push("/merchantlandingpage");
     })
     .catch((error) => {
       swal({

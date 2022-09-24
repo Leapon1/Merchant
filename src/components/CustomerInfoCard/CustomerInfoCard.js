@@ -39,7 +39,10 @@ const CustomerInfoCard = (props) => {
             </div>
           )
         } 
-          <div className={"hover-function "+(isVisible?"active":"")} >
+        
+            
+
+          <div className={"hover-function "+(isVisible ? "active" : "")} >
             <div className="hover-function-inner">
               <Link className="hover-link" 
               onClick={() => { 
@@ -49,7 +52,6 @@ const CustomerInfoCard = (props) => {
               >Completed |</Link>
               <Link
                 className="hover-link"
-                // to={"/Appointment/"+ props.appointment.ApptId}
                 onClick={() => {
                   history.push("/Appointment/"+ props.appointment.ApptId+"/", {
                     state: {
@@ -66,13 +68,15 @@ const CustomerInfoCard = (props) => {
                 setIsvisible(false)}}
               >Cancel</Link>
             </div>
-            </div>
-            <a onClick={(e) => {
-              e.preventDefault();
+          </div>
+
+          
+        <a className="toggleBtn-con" onClick={() => {
               setIsvisible(!isVisible)
             }}>
               <i className="toggleBtn fa-solid fa-bars"></i>
             </a>
+            
       </div>
   );
 };
