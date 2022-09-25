@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth;
+  }
 body{
     background: #FBF8F3;
 }
@@ -719,9 +722,9 @@ body{
     padding: 0 0 10px 0;
 }
 .adduser-floatbox {
-    position: absolute;
-    right: 0;
-    bottom: 90px;
+    position: fixed;
+    right: 15px;
+    bottom: 50px;
     z-index: 10;
 }
 .marchant-header-back {
@@ -734,10 +737,11 @@ body{
     text-align: left;
     padding: 0 0 20px 0;
 }
-.marchant-header-back span + span {
+.marchant-header-back span {
     color: #333;
-    font-size: 25px;
-    padding-left: 10px;
+    font-size: 40px;
+    font-weight: 500;
+
 }
 .marchant-header-back a{
     color: #333;

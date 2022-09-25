@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Merchantlandingpage.css";
-// import calendarsamplemrchant from "./images/calendarsamplemrchant.png";
 import addusericon from "./images/addusericon.png";
 import CustomerInfoCard from "../CustomerInfoCard/CustomerInfoCard";
 import * as moment from "moment";
@@ -13,34 +11,17 @@ var currentMonthYear = " "+moment().format('MMM') +" "+ moment().format('YY');
 // MONTH
 
 // DATE
-var datePicker_3 = moment().subtract(3, 'd').format("DD");
-var datePicker_2 = moment().subtract(2, 'd').format("DD");
-var datePicker_1 = moment().subtract(1, 'd').format("DD");
 var datePicker =  moment().format("DD");
-var datePicker1 = moment().add(1, 'days').format('DD');
-var datePicker2 =  moment().add(2, 'days').format('DD');
-var datePicker3 =  moment().add(3, 'days').format('DD');
-// DATE
 
-// DAY 
-var dayName_3 = moment().subtract(3, 'd').format('ddd');
-var dayName_2 = moment().subtract(2, 'd').format('ddd');
-var dayName_1 = moment().subtract(1, 'd').format('ddd');
-var dayName = moment().format('ddd');
-var dayName1 = moment().add(1, 'd').format('ddd');
-var dayName2 = moment().add(2, 'd').format('ddd');
-var dayName3 = moment().add(3, 'd').format('ddd');
-// DAY
+
+const numbers = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1 , 0 , 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10];
 
 class Merchantlandingpage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      customerInfo: [],
       appointmentList: [],
-      appointmentId: [],
       services: [],
-      monthName: moment().format('MMMM'),
       selectedDate: moment().format("DD"),
     };
     
@@ -48,6 +29,7 @@ class Merchantlandingpage extends Component {
 
   componentDidMount() {
     this.initialCall(this.state.sliceNewDate);
+    document.getElementById('calender-date-number3').scrollIntoView();
   }
 
   initialCall(sliceNewDate) {
@@ -58,12 +40,11 @@ class Merchantlandingpage extends Component {
         const compareDate = moment(dateCompare.StartTime)
           .format("DD MMM YY")
           .slice(0, 10);
-        const sliceNewDate = this.state.selectedDate+currentMonthYear;
-        if (compareDate == sliceNewDate) {
+        const sliceNewDate = this.state.selectedDate + currentMonthYear;
+        if (compareDate === sliceNewDate) {
           const customerInfoURL ="/api/Customer/" + dateCompare.customerId +"/";
           axios.get(customerInfoURL).then((custResponse) => {
             dateCompare.customer = custResponse.data;
-
           if(this.allAppointmentServiceList != undefined){
             dateCompare.appServices = this.allAppointmentServiceList.filter(info => info.appointmentId == dateCompare.ApptId);
             
@@ -73,7 +54,7 @@ class Merchantlandingpage extends Component {
               .then((res) => {
                 appService.service = res.data;
                 this.setState({
-                  appointmentList: JSON.parse(JSON.stringify(appointmentList))
+                  appointmentList: appointmentList
                 })
               })
             })
@@ -112,101 +93,42 @@ class Merchantlandingpage extends Component {
     });
   }
 
-
-
   render() {
     return (
       <div className="merchantlandingpage-container">
         <div className="adduser-floatbox">
-          <a href="http://localhost:3001/customerLandingpage">
+          <a href="https://leapon-customer.herokuapp.com/">
             <img src={addusericon} alt="addusericon" />
           </a>
         </div>
         <div className="merchantlanding-calender">
-          {/* <img src={calendarsamplemrchant} alt="calendarsamplemrchant" />{" "} */}
           <p className="monthName">{currentMonth}</p>
           <div className="datePicker">
-            <div className="date_single_item">
-              <p className="dayName">{dayName_3}</p>
-              <div className={this.state.selectedDate == datePicker_3 ? "selected_date" : ""}>
-              <a className={this.state.selectedDate == datePicker_3 ? "selected_date" : ""} onClick={() => {
-                this.setState({
-                  selectedDate: datePicker_3, 
-                  appointmentList: [],
-                })
-                this.initialCall(datePicker_3);
-              }}>{datePicker_3}</a></div>
-            </div>
-            <div className="date_single_item">
-              <p className="dayName">{dayName_2}</p>
-              <div className={this.state.selectedDate == datePicker_2 ? "selected_date" : ""}>
-              <a  onClick={() => {
-                this.setState({
-                  selectedDate: datePicker_2,
-                   appointmentList: [],
-                   })
-                this.initialCall(datePicker_2);
-              }}>{datePicker_2}</a></div>
-            </div>
-            <div className="date_single_item">
-              <p className="dayName">{dayName_1}</p>
-              <div className={this.state.selectedDate == datePicker_1 ? "selected_date" : ""}>
-              <a  onClick={() => {
-                this.setState({
-                  selectedDate: datePicker_1, 
-                  appointmentList: [],
-                })
-                this.initialCall(datePicker_1);
-              }}>{datePicker_1}</a></div>
-            </div>
-            <div className="date_single_item">
-              <p className="dayName">{dayName}</p>
-              <div className={this.state.selectedDate == datePicker ? "selected_date" : ""}>
-                <a onClick={() => {
-                  this.setState({
-                    selectedDate: datePicker,
-                    appointmentList: [],
-                    })
-                  this.initialCall(datePicker);
-                }}>{datePicker}</a>
+          
+          <div className="scrollable-con">
+          {
+            numbers.map((number, index) => {
+              let currentDay = moment().add(number, 'd').format('ddd');
+              let date = moment().add(number, 'days').format('DD');
+              return (
+                <div key={"number"+ index} className="date_single_item" id={"calender-date-number"+number}>
+                  <p className="dayName">{currentDay}</p>
+                  <div className={this.state.selectedDate == date ? "selected_date" : ""}>
+                    <a onClick={() => {
+                      this.setState({
+                        selectedDate: date,
+                        appointmentList: [],
+                        })
+                      this.initialCall(datePicker);
+                    }}>{date}</a>
+                  </div>
               </div>
-            </div>
-            <div className={"date_single_item "}>
-              <p className="dayName">{dayName1}</p>
-              <div className={this.state.selectedDate == datePicker1 ? "selected_date" : ""} >
-              <a className={this.state.selectedDate == datePicker1 ? "selected_date" : ""} 
-              onClick={() => {
-                this.setState({
-                  selectedDate: datePicker1, 
-                  appointmentList: [], 
-                })
-                this.initialCall(datePicker1);
-              }}>
-                {datePicker1}
-              </a></div>
-            </div>
-            <div className="date_single_item">
-              <p className="dayName">{dayName2}</p>
-              <div className={this.state.selectedDate == datePicker2 ? "selected_date" : ""}>
-              <a onClick={() => {
-                this.setState({
-                  selectedDate: datePicker2, 
-                  appointmentList: [],
-                })
-                this.initialCall();
-              }}>{datePicker2}</a></div>
-            </div>
-            <div className="date_single_item">
-              <p className="dayName">{dayName3}</p>
-              <div className={this.state.selectedDate == datePicker3 ? "selected_date" : ""}>
-              <a onClick={() => {
-                this.setState({
-                  selectedDate: datePicker3, 
-                  appointmentList: [],
-                })
-                this.initialCall();
-              }}>{datePicker3}</a></div>
-            </div>
+              )
+            }
+                
+          )}
+          </div>
+         
           </div>
         </div>
         <div className="merchantlanding-calender-result">
@@ -214,9 +136,7 @@ class Merchantlandingpage extends Component {
           {"Today | "+ new Date().toString().slice(0, 10)}
           </div>
           <div className="merchantlanding-calender-upnext">
-            <Link to="/landingpageselection">
-              <button>Up next</button>
-            </Link>
+              <span>Up next</span>
           </div>
           <div className="merchantlanding-calender-content">
             {/* <div className="merchantlanding-calender-datetime">

@@ -16,7 +16,7 @@
 }
 .hover-function{
     opacity: 0;
-    transition: 0.4s;
+    transition: 0.2s;
     visibility: hidden;
 }
 .hover-function.active{
@@ -64,7 +64,10 @@
 }
 .merchantlanding-calender .date_single_item{
     font-size: 18px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 14.28%;
 }
 .merchantlanding-calender .date_single_item a{
     cursor: pointer;
@@ -161,7 +164,11 @@
     text-align: left;
     padding: 0 0 5px 0;
 }
-.merchantlanding-calender-upnext button {
+.merchantlandingpage-container{
+    position: relative;
+}
+.merchantlanding-calender-upnext span {
+    display: inline-block;
     background: #FF9900;
     border-radius: 15px;
     padding: 3px 14px;
@@ -183,6 +190,13 @@
     transition: all 0.5s ease 0s;
 }
 
+.scrollable-con{
+    display: flex;
+    overflow-x: auto;
+}
+.scrollable-con::-webkit-scrollbar{
+    display: none;
+}
 
 
 

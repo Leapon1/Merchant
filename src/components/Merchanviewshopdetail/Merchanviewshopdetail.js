@@ -48,8 +48,8 @@ function Merchanviewshopdetail() {
   return (
     <div className="merchanviewshopdetail-container">
       <div class="marchant-header-back">
-        <span>&lt;</span>
-        <span>Shop Details </span>
+        
+        <Link to="/merchantlandingpage"><span>&lt;</span> Shop Details </Link>
       </div>
 
       <div className="marchant-viewshopdetail-form">
