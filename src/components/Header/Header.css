@@ -228,9 +228,10 @@
     justify-content: space-between;
     padding: 13px 0 13px 0;
     position: relative;
+    align-items: center;
 }
 .header-leftpart {
-    flex-basis: 23px;
+    flex-basis: 25px;
 }
 .header-leftpart img {
     width: 100%;

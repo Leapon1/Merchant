@@ -5,7 +5,6 @@ import $ from 'jquery'
 import './Header.css';
 
 import companylogo from './images/companylogo.png';
-// import mobilebar from './images/mobilebar.png';
 import mobilemenu from './images/mobilemenu.png';
 import listarrow from './images/listarrow.png';
 
@@ -34,7 +33,6 @@ class MyHeader  extends Component {
 					  <span className="header-mobilemenu">
 						<a className="mobilemenu"><img src={mobilemenu} alt="mobilemenu" /></a>
 					  </span>
-
 					</div>
 
 					<div className="header-mobilemenu-content">

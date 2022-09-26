@@ -8,7 +8,6 @@ const CustomerInfoCard = (props) => {
   const history = useHistory();
  const [isVisible, setIsvisible] = useState(false);
  const [status, setStatus] = useState("");
-
   return (
   <div className={"merchantlanding-calender-item "+(status !== "" ? "mb" : "")} key={'app'+props.appointment.ApptId}>
         <div className="merchantlanding-calender-itemleftpart">

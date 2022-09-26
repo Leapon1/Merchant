@@ -79,15 +79,9 @@ function MerchantEditTime(props) {
                 <div className="company-summaryitem-bottom">${item.service.price}</div>
               </div>
               <div className="company-summary-item-rightpart">
-                {/*start:increment decrement*/}
                 <div className="incrementdecrement-box">
-                  
-
                   <div className="total-count total-count-1">{item.qty}</div>
-
                 </div>
-                {/*end:increment decrement*/}
-
                 <div className="company-summaryitem-rightbottom">
                   ${item.service.price * item.qty}
                   {/* {productCountPrice(item, index)} */}
@@ -128,7 +122,10 @@ function MerchantEditTime(props) {
           />
         </div>
       </div>
-      <div className="bottom-fixed-container">
+
+      {
+        formData.StartTime ? 
+<div className="bottom-fixed-container">
         <div>
           <div className="company-calendar-resultoutput">
             {moment(formData.StartTime).format("MMMM DD") != "Invalid date"
@@ -152,7 +149,12 @@ function MerchantEditTime(props) {
             </a>
           </div>
         </div>
-      </div>
+      </div> : <div></div>
+
+      }
+      
+      
+
     </div>
   );
 }
