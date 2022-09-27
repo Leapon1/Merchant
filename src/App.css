@@ -743,7 +743,7 @@ body{
 }
 .marchant-header-back span {
     color: #333;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 500;
 
 }
@@ -915,7 +915,7 @@ body{
     color: #FF9900;
     position: absolute;
     font-size: 20px;
-    right: 15px;
+    right: 10px;
 }
 
 

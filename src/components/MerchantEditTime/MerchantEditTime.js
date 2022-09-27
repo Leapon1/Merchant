@@ -11,27 +11,24 @@ const services = [];
 function MerchantEditTime(props) {
 	const history = useHistory();
   const [formData, setFormData] = useState({
-    ApptId: "",
-    customerId: "",
-    appointmentServiceId: "",
-    total: "",
-    StartTime: "",
+    ApptId: props.location.state.state.item.ApptId,
+    customerId: props.location.state.state.item.customerId,
+    appointmentServiceId: props.location.state.state.item.appointmentServiceId,
+    total: props.location.state.state.item.total,
+    StartTime: props.location.state.state.item.StartTime,
+    Status: props.location.state.state.item.Status,
   });
   useEffect(() => {
-    axios.get(`/api${props.location.pathname}`).then((res) => {
-      setFormData({
-        ...formData,
-        ApptId: res.data.ApptId,
-        customerId: res.data.customerId,
-        appointmentServiceId: res.data.appointmentServiceId,
-        total: res.data.total,
-      });
-    });
-	handleServices();
+	  props.location.state.state.item.appServices.map((item ) => {
+      return (
+        services.push(item)
+      ) 
+   })
   }, []);
 
   const handleSubmit = () => {
-    axios.put(`/api${props.location.pathname}`, formData).then((res) => {
+    const url = `/api${props.location.pathname}`
+    axios.put(url, formData).then((res) => {
       swal({
         title : "Success!",
         text: "Your details have Been submitted",
@@ -52,14 +49,8 @@ function MerchantEditTime(props) {
     })
   };
 
-  const handleServices = () => {
-	props.location.state.state.item.appServices.map((item, index ) => {
-	 	return (
-			services.push(item)
-		) 
-	})
-  }
-  
+
+
   return (
     <div>
       <div className="page-header-back">
@@ -70,10 +61,10 @@ function MerchantEditTime(props) {
       </div>
 
 	  <div className="company-summary">
-      {services.map((item, index) => {
+      {
+      services.map((item, index) => {
         return (
-          <>
-            <div className="company-summary-item">
+            <div key={'service'+ index} className="company-summary-item">
               <div className="company-summary-item-leftpart">
                 <div className="company-summaryitem-top">{item.service.name}</div>
                 <div className="company-summaryitem-bottom">${item.service.price}</div>
@@ -88,9 +79,9 @@ function MerchantEditTime(props) {
                 </div>
               </div>
             </div>
-          </>
         );
-      })}
+      })
+      }
 	   	<div className="company-summary-grandtotal">
               <div className="company-summary-grandtotal-leftpart">
                 <span>Grand Total</span>

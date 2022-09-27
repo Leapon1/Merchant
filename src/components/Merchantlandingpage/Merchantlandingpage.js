@@ -104,7 +104,6 @@ class Merchantlandingpage extends Component {
         <div className="merchantlanding-calender">
           <p className="monthName">{currentMonth}</p>
           <div className="datePicker">
-          
           <div className="scrollable-con">
           {
             numbers.map((number, index) => {

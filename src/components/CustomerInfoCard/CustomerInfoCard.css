@@ -17,3 +17,11 @@
     padding-bottom: 30px;
     transition: 0.4s;
 }
+.total-amount{
+    position: absolute;
+    right: 35px;
+    font-size: 14px;
+}
+.total-amount span{
+    font-size: 11px;
+}

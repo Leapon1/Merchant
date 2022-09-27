@@ -24,8 +24,11 @@ function Merchantechsupport() {
   return (
     <div className="merchantechsupport-container">
       <div className="marchant-header-back">
-        <span>&lt;</span>
-        <span>Technical Support </span>
+        <Link to="/merchantlandingpage">
+          <span>&lt;</span>
+          <span>Technical Support </span>
+        </Link>
+        
       </div>
 
       <div className="marchant-technicalsupport-form">
