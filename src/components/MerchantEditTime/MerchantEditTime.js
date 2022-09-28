@@ -6,25 +6,26 @@ import {  useHistory } from "react-router-dom";
 import * as moment from "moment";
 import DateTimePicker from "../DayTimePicker/DayTimePicker";
 
-const services = [];
-
 function MerchantEditTime(props) {
 	const history = useHistory();
+  const [services, setServices] = useState([]);  
   const [formData, setFormData] = useState({
-    ApptId: props.location.state.state.item.ApptId,
-    customerId: props.location.state.state.item.customerId,
-    appointmentServiceId: props.location.state.state.item.appointmentServiceId,
-    total: props.location.state.state.item.total,
-    StartTime: props.location.state.state.item.StartTime,
-    Status: props.location.state.state.item.Status,
+    ApptId: "",
+    customerId: "",
+    appointmentServiceId: "",
+    total: "",
+    StartTime: "",
+    Status: "",
   });
-  useEffect(() => {
-	  props.location.state.state.item.appServices.map((item ) => {
-      return (
-        services.push(item)
-      ) 
-   })
-  }, []);
+
+  useEffect(()=>{
+    let services = []
+    props.location.state.state.item.appServices.map((item ) => {
+      services.push(item)
+    });
+    setServices(services)
+  }, [props.location.state.state.item.appServices])
+
 
   const handleSubmit = () => {
     const url = `/api${props.location.pathname}`
@@ -60,27 +61,27 @@ function MerchantEditTime(props) {
         Edit Summary Time
       </div>
 
-	  <div className="company-summary">
-      {
-      services.map((item, index) => {
-        return (
-            <div key={'service'+ index} className="company-summary-item">
-              <div className="company-summary-item-leftpart">
-                <div className="company-summaryitem-top">{item.service.name}</div>
-                <div className="company-summaryitem-bottom">${item.service.price}</div>
-              </div>
-              <div className="company-summary-item-rightpart">
-                <div className="incrementdecrement-box">
-                  <div className="total-count total-count-1">{item.qty}</div>
+	  <div className="company-summary">    
+      {  
+        services.map((item, index) => {
+          return (
+              <div key={'service'+ index} className="company-summary-item">
+                <div className="company-summary-item-leftpart">
+                  <div className="company-summaryitem-top">{item.service.name}</div>
+                  <div className="company-summaryitem-bottom">${item.service.price}</div>
                 </div>
-                <div className="company-summaryitem-rightbottom">
-                  ${item.service.price * item.qty}
-                  {/* {productCountPrice(item, index)} */}
+                <div className="company-summary-item-rightpart">
+                  <div className="incrementdecrement-box">
+                    <div className="total-count total-count-1">{item.qty}</div>
+                  </div>
+                  <div className="company-summaryitem-rightbottom">
+                    ${item.service.price * item.qty}
+                    {/* {productCountPrice(item, index)} */}
+                  </div>
                 </div>
               </div>
-            </div>
-        );
-      })
+          );
+        })
       }
 	   	<div className="company-summary-grandtotal">
               <div className="company-summary-grandtotal-leftpart">
@@ -105,18 +106,22 @@ function MerchantEditTime(props) {
         <div className="company-calendar-section">
           <DateTimePicker
             dateTime={(value) => {
-              setFormData({
-                ...formData,
+              setFormData({ 
                 StartTime: value,
-              });
-            }}
+                ApptId: props.location.state.state.item.ApptId,
+                customerId: props.location.state.state.item.customerId,
+                appointmentServiceId: props.location.state.state.item.appointmentServiceId,
+                total: props.location.state.state.item.total,
+                Status: props.location.state.state.item.Status,
+              })
+          }}
           />
         </div>
       </div>
 
       {
         formData.StartTime ? 
-<div className="bottom-fixed-container">
+      <div className="bottom-fixed-container">
         <div>
           <div className="company-calendar-resultoutput">
             {moment(formData.StartTime).format("MMMM DD") != "Invalid date"

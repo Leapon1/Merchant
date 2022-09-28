@@ -26,7 +26,7 @@ class MyHeader  extends Component {
             <header  className="header-container">				
 				<div className="header-inner-section"> 
 					<div className="header-leftpart">
-					<Link to="/"><img src={companylogo} alt="companylogo" /></Link>
+					<a href="/"><img src={companylogo} alt="companylogo" /></a>
 					</div>
 					<div className="header-middlepart">DUKE</div>
 					<div className="header-rightpart">

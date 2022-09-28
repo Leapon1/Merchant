@@ -37,7 +37,8 @@
     padding: 0 !important;
   }
   .hqlASh {
-    background-color: #3f1569 !important
+    background-color: #3f1569 !important;
+    
   }
   .hqlASh:focus {
     background-color: gray !important
@@ -75,3 +76,9 @@
 .hvtuvo:hover {
   color: #ffa31a !important;
 }
+@media (max-width: 450px){
+  .hqlASh {
+    width: auto !important;
+  }
+}
+
